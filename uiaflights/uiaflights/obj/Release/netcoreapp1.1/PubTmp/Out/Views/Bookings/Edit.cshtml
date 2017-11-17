@@ -1,0 +1,147 @@
+@model uiaflights.Models.FlightBookingViewModels.FlightBookingViewModel
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+@section Styles {
+    <link href="https://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
+}
+
+<h2>Edit Booking</h2>
+
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.booking.ID)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.booking.ID)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.booking.BookingDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.booking.BookingDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.booking.Status)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.booking.Status)
+    </dd>
+    @if (Model.flight != null)
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.FlightNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.flight.FlightNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.Origin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.flight.Origin.Name) (@Html.DisplayFor(model => model.flight.Origin.IATA)), @Html.DisplayFor(model => model.flight.Origin.City), @Html.DisplayFor(model => model.flight.Origin.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.Dest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.flight.Dest.Name) (@Html.DisplayFor(model => model.flight.Dest.IATA)), @Html.DisplayFor(model => model.flight.Dest.City), @Html.DisplayFor(model => model.flight.Dest.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.DepartureDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.flight.DepartureDateTime) hrs
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.flight.ArrivalDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.flight.ArrivalDateTime) hrs
+        </dd>
+        <dd>
+            <span class="addtocalendar atc-style-blue">
+                <var class="atc_event">
+                    <var class="atc_date_start">@Model.flight.DepartureDateTime.ToString("yyyy-MM-dd HH:mm:ss")</var>
+                    <var class="atc_date_end">@Model.flight.ArrivalDateTime.ToString("yyyy-MM-dd HH:mm:ss")</var>
+                    <var class="atc_timezone">UTC</var>
+                    <var class="atc_title">Flight @Model.flight.FlightNo to @Model.flight.Dest.City, @Model.flight.Dest.Country</var>
+                    <var class="atc_description">Please be at the airport 3 hours before departure time. Enjoy your flight!</var>
+                    <var class="atc_location">@Model.flight.Origin.Name (@Model.flight.Origin.IATA), @Model.flight.Origin.City, @Model.flight.Origin.Country</var>
+                    <var class="atc_organizer">Ukraine International Airlines</var>
+                    <var class="atc_organizer_email">fly@uia.com</var>
+                </var>
+            </span>
+        </dd>
+    }
+
+    @if (Model.booking.Tickets != null)
+    {
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ticket No</th>
+                        <th>Passenger Name</th>
+                        <th>Cabin Class</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.booking.Tickets)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Passenger.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CabinCl)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                <a asp-controller="Tickets" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                <a asp-controller="Tickets" asp-action="Delete" asp-route-id="@item.ID">Cancel</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.booking.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.booking.Total)
+        </dd>
+    }
+
+</dl>
+
+<hr />
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        (function () {
+                    if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
+                    if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
+                        var h = d[g]('body')[0];h.appendChild(s); }})();
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

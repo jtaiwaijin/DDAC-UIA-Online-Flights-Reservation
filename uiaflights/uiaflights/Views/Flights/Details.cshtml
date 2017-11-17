@@ -1,0 +1,73 @@
+@model uiaflights.Models.Flight
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Flight</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FlightNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Origin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Origin.Name) (@Html.DisplayFor(model => model.Origin.IATA))
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dest.Name) (@Html.DisplayFor(model => model.Dest.IATA))
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Plane)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Plane.Make) @Html.DisplayFor(model => model.Plane.Model) | @Html.DisplayFor(model => model.Plane.TailNo)
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Passenger Name</th>
+                    <th>Cabin Class</th>
+                </tr>
+                @foreach (var item in Model.Tickets)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Passenger.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CabinCl)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

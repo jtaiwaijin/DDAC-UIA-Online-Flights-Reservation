@@ -1,0 +1,77 @@
+@model uiaflights.Models.Ticket
+
+@{
+    ViewData["Title"] = "Ticket Details";
+}
+
+<h2>Ticket Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.DOB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.DOB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.PassportNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.PassportNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Nationality)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Nationality)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CabinCl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CabinCl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-controller="Bookings" asp-action="Edit" asp-route-id="@Model.Booking.ID">Back</a>
+</div>

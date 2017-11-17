@@ -1,0 +1,67 @@
+@model uiaflights.Models.Flight
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Flight</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="FlightNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FlightNo" class="form-control" />
+                <span asp-validation-for="FlightNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OriginAirportID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="OriginAirportID" class="form-control" asp-items="ViewBag.OriginAirportID"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DestAirportID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="DestAirportID" class="form-control" asp-items="ViewBag.DestAirportID"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DepartureDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DepartureDateTime" class="form-control" />
+                <span asp-validation-for="DepartureDateTime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ArrivalDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ArrivalDateTime" class="form-control" />
+                <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PlaneID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PlaneID" class="form-control" asp-items="ViewBag.PlaneID"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,12 @@
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\bin\Debug\netcoreapp1.1\uiaflights.deps.json
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\bin\Debug\netcoreapp1.1\uiaflights.runtimeconfig.json
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\bin\Debug\netcoreapp1.1\uiaflights.runtimeconfig.dev.json
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\bin\Debug\netcoreapp1.1\uiaflights.dll
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\bin\Debug\netcoreapp1.1\uiaflights.pdb
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.csproj.CoreCompileInputs.cache
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.AssemblyInfoInputs.cache
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.AssemblyInfo.cs
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.dll
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.pdb
+C:\Users\JamesT\Source\Repos\DDAC\uiaflights\uiaflights\obj\Debug\netcoreapp1.1\uiaflights.csprojResolveAssemblyReference.cache

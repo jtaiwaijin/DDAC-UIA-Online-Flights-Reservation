@@ -1,0 +1,155 @@
+@model uiaflights.Models.FlightBookingViewModels.FlightBookingViewModel
+
+
+@{
+    ViewData["Title"] = "Book Flight";
+}
+
+@section Styles {
+    <link href="https://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
+}
+
+<h2>Book Flight</h2>
+
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.flight.FlightNo)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.FlightNo)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.flight.Origin)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.Origin.Name) (@Html.DisplayFor(model => model.flight.Origin.IATA)), @Html.DisplayFor(model => model.flight.Origin.City), @Html.DisplayFor(model => model.flight.Origin.Country)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.flight.Dest)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.Dest.Name) (@Html.DisplayFor(model => model.flight.Dest.IATA)), @Html.DisplayFor(model => model.flight.Dest.City), @Html.DisplayFor(model => model.flight.Dest.Country)
+<dt>
+        @Html.DisplayNameFor(model => model.flight.DepartureDateTime)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.DepartureDateTime) hrs
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.flight.ArrivalDateTime)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.ArrivalDateTime) hrs
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.flight.Plane)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.flight.Plane.Make) @Html.DisplayFor(model => model.flight.Plane.Model) | @Html.DisplayFor(model => model.flight.Plane.TailNo)
+    </dd>
+    <dd>
+        <span class="addtocalendar atc-style-blue">
+            <var class="atc_event">
+                <var class="atc_date_start">@Model.flight.DepartureDateTime.ToString("yyyy-MM-dd HH:mm:ss")</var>
+                <var class="atc_date_end">@Model.flight.ArrivalDateTime.ToString("yyyy-MM-dd HH:mm:ss")</var>
+                <var class="atc_timezone">UTC</var>
+                <var class="atc_title">Flight @Model.flight.FlightNo to @Model.flight.Dest.City, @Model.flight.Dest.Country</var>
+                <var class="atc_description">Please be at the airport 3 hours before departure time. Enjoy your flight!</var>
+                <var class="atc_location">@Model.flight.Origin.Name (@Model.flight.Origin.IATA), @Model.flight.Origin.City, @Model.flight.Origin.Country</var>
+                <var class="atc_organizer">Ukraine International Airlines</var>
+                <var class="atc_organizer_email">fly@uia.com</var>
+            </var>
+        </span>
+    </dd>
+</dl>
+
+<hr />
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@ViewData["Message"]</strong>
+    </div>
+}
+<br />
+
+<form asp-controller="Flights" asp-action="Book">
+    <div class="form-horizontal">
+        <input type="hidden" asp-for="flight.ID" name="fid"/>
+        <input type="hidden" asp-for="booking.ID" name="bid" />
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DOB" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DOB" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PassportNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PassportNo" class="form-control" />
+                <span asp-validation-for="PassportNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nationality" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Nationality" class="form-control" />
+                <span asp-validation-for="Nationality" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cabinCl" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select name="cabinCl" class="form-control" asp-items="ViewBag.ClassType"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Book" class="btn btn-default" /> |
+                <a asp-action="Search" asp-route-origin="@ViewData["origin"]" asp-route-dest="@ViewData["dest"]" asp-route-date="@ViewData["date"]">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+    (function () {
+                if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
+                if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
+                    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                    s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
+                    s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
+                    var h = d[g]('body')[0];h.appendChild(s); }})();
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

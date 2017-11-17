@@ -1,0 +1,61 @@
+@model IEnumerable<uiaflights.Models.Booking>
+
+@{
+    ViewData["Title"] = "Bookings";
+}
+
+<h2>Bookings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">@Html.DisplayNameFor(model => model.ID)</a>
+</th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.FlightNo)
+</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.Origin)
+</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.Dest)
+</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.DepartureDateTime)
+</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.FlightNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.Origin.Name) (@Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.Origin.IATA))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.Dest.Name) (@Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.Dest.IATA))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tickets.FirstOrDefault().Flight.DepartureDateTime) hrs
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Cancel</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

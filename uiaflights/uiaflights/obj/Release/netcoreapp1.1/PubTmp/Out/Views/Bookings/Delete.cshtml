@@ -1,0 +1,106 @@
+@model uiaflights.Models.Booking
+
+@{
+    ViewData["Title"] = "Cancel Booking";
+}
+
+<h2>Cancel Booking</h2>
+<p class="text-danger">@ViewData["ErrorMessage"]</p>
+<h3>Are you sure you want to cancel this booking?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="ID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        @if (Model.Tickets != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.FlightNo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.FlightNo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.Origin)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Origin.Name) (@Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Origin.IATA)), @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Origin.City), @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Origin.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.Dest)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Dest.Name) (@Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Dest.IATA)), @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Dest.City), @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.Dest.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.DepartureDateTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.DepartureDateTime) hrs
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tickets.FirstOrDefault().Flight.ArrivalDateTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tickets.FirstOrDefault().Flight.ArrivalDateTime) hrs
+            </dd>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Ticket No</th>
+                        <th>Passenger Name</th>
+                        <th>Cabin Class</th>
+                        <th>Price</th>
+                    </tr>
+                    @foreach (var item in Model.Tickets)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Passenger.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CabinCl)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Total)
+            </dd>
+        }
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancel" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

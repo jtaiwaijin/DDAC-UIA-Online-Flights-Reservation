@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/banner1.jpg" alt="ASP.NET" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    It's Finally The Year-End Sale!
+                    <a class="btn btn-info" asp-action="Search">
+                        Search Flight
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner2.jpg" alt="Visual Studio" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Widest network, lowest fares!
+                    <a class="btn btn-info" asp-action="Search">
+                        Search Flight
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chvron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>e
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <h2 class="mt-4">United States, Fly with Us!</h2>
+        <p>At UIA, we realize the true needs of discerning travellers and provide paramount services and products to deliver utmost satisfaction to our guests, each and every one with unique requisites and expectations.</p>
+        <p>UIA has sparked a revolution in air travel with more and more people around the region choosing us as their preferred choice of air transport. As we continuously strive to promote air travel, we also seek to create excitement amongst our guests.
+        </p>
+    </div>
+    <div class="col-sm-4">
+        <h2 class="mt-4">Contact Us</h2>
+        <address>
+            <strong>Ukraine International Airlines</strong>
+            <br>Boryspil International Airport
+            <br>Kiev, Ukraine
+            <br>
+        </address>
+        <address>
+            Phone : +38 044 581 50 50
+            <br>
+            Email :
+            <a href="mailto:#">info@uia.com</a>
+        </address>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 my-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/card1.jpg" alt="">
+            <div class="card-body">
+                <h4 class="card-title">Great Meals on Board</h4>
+                <p class="card-text">Best range of succulent meals specially prepared by our F&B team!</p>
+            </div>
+            @*<div class="card-footer">
+                <a href="#" class="btn btn-primary">Find Out More!</a>
+            </div>*@
+        </div>
+    </div>
+    <div class="col-sm-4 my-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/card4.jpg" alt="">
+            <div class="card-body">
+                <h4 class="card-title">Comfort Seats</h4>
+                <p class="card-text">Different variation of seats optimised for your comfort!</p>
+            </div>
+            @*<div class="card-footer">
+                <a href="#" class="btn btn-primary">Find Out More!</a>
+            </div>*@
+        </div>
+    </div>
+    <div class="col-sm-4 my-4">
+        <div class="card">
+            <img class="card-img-top" src="~/images/card3.png" alt="">
+            <div class="card-body">
+                <h4 class="card-title">Baggage Allowance</h4>
+                <p class="card-text">Ensure your check-in and carry-on baggages are within international flight regulations!</p>
+            </div>
+            @*<div class="card-footer">
+                <a href="#" class="btn btn-primary">Find Out More!</a>
+            </div>*@
+        </div>
+    </div>
+</div>

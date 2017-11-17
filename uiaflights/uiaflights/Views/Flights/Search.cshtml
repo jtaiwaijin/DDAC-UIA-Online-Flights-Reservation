@@ -1,0 +1,85 @@
+@model IEnumerable<uiaflights.Models.Flight>
+
+@{
+    ViewData["Title"] = "Search Flights";
+}
+
+<h2>Search Flights</h2>
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-info">
+        <strong>@ViewData["ErrorMessage"]</strong>
+    </div>
+}
+<form asp-action="Search" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Origin: <select name="origin" asp-items="ViewBag.origin"></select>
+            Destination: <select name="dest" asp-items="ViewBag.dest"></select>
+            Departure Date: <input type="date" name="date" value="@ViewData["date"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+@if (Model != null)
+{
+    <h5 style="font-weight:bold">
+        @Model.First().Origin.Name (@Model.First().Origin.IATA) >>> @Model.First().Dest.Name (@Model.First().Dest.IATA)
+    </h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlightNo)
+</th>
+                <th>
+                    <a asp-action="Search" asp-route-origin="@ViewData["originvalue"]" asp-route-dest="@ViewData["destvalue"]" asp-route-date="@ViewData["date"]" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DepartureDateTime)</a>
+</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArrivalDateTime)
+                </th>
+                <th>
+                    <a asp-action="Search" asp-route-origin="@ViewData["originvalue"]" asp-route-dest="@ViewData["destvalue"]" asp-route-date="@ViewData["date"]" asp-route-sortOrder="@ViewData["EconSortParm"]">Economy Class Fare</a>
+</th>
+                <th>
+                    <a asp-action="Search" asp-route-origin="@ViewData["originvalue"]" asp-route-dest="@ViewData["destvalue"]" asp-route-date="@ViewData["date"]" asp-route-sortOrder="@ViewData["BusSortParm"]">Business Class Fare</a>
+</th>
+                <th>
+                    <a asp-action="Search" asp-route-origin="@ViewData["originvalue"]" asp-route-dest="@ViewData["destvalue"]" asp-route-date="@ViewData["date"]" asp-route-sortOrder="@ViewData["FirstSortParm"]">First Class Fare</a>
+</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlightNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartureDateTime) hrs
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArrivalDateTime) hrs
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tariff.Single(t => t.CabinCl == "Economy").AdultFare)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tariff.Single(t => t.CabinCl == "Business").AdultFare)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tariff.Single(t => t.CabinCl == "First").AdultFare)
+                    </td>
+                    <td>
+                        <a asp-action="Book" asp-route-id="@item.ID" asp-route-date="@ViewData["date"]">Book</a>
+</td>
+                </tr>
+                }
+
+        </tbody>
+    </table>
+}
